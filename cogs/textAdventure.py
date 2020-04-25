@@ -66,7 +66,7 @@ class TextAdventure(commands.Cog):
         connection.close()
 
         stats_list = ['armour', 'agility', 'attack', 'magic']
-        number_dict = ['1️⃣': 'one', '2️⃣': 'two', '3️⃣': 'three', '4️⃣': 'four', '5️⃣': 'five']
+        number_dict = {'1️⃣': 'one', '2️⃣': 'two', '3️⃣': 'three', '4️⃣': 'four', '5️⃣': 'five'}
         # part 2 the reckoning
         for stat in stats_list:
             embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much {stat} do you have, <@{ctx.author.id}>?")
