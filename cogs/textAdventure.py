@@ -37,7 +37,7 @@ class TextAdventure(commands.Cog):
                 print(" > not in database")
                 continue
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        embed.set_author(name="Player stats")
+        embed.set_author(name=f"<@{ctx.author.id}>'s' Stats!")
         embed.add_field(name="Health", value=stats[0], inline=True)
         embed.add_field(name="Armour", value=stats[1], inline=True)
         embed.add_field(name="Agility", value=stats[2], inline=True)
