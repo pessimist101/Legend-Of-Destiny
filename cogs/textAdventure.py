@@ -13,8 +13,8 @@ class TextAdventure(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('Ready cog online')
-        loadDescription = open('LoadDescription.txt').read()
-        title = open('Title.txt').read()
+        self.loadDescription = open('LoadDescription.txt').read()
+        self.title = open('Title.txt').read()
         await self.client.get_channel(config['logChannel']).send(title)
         await self.client.get_channel(config['logChannel']).send(loadDescription)
 
