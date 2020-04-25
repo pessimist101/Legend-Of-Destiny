@@ -87,7 +87,7 @@ class TextAdventure(commands.Cog):
                 if reaction.emoji == emoji:
                     await ctx.send(f"You have selected {number_dict[emoji]} points in your {stat} stat.")
 
-                # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
+            await self.mystats.callback(self=self, ctx=ctx)
 
     @commands.command()
     async def restart(self, ctx):
