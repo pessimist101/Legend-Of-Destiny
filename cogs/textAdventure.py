@@ -83,19 +83,15 @@ class TextAdventure(commands.Cog):
             def reaction_info_check(reaction, user):
                 return user == ctx.author and reaction.message.id == messageObject.id
 
-            # Pause/wait for the user to react with an emoji that meets the above condition.
+            # Pause/wait for the user to react with an emoji that meets the above conition.
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
 
             # Okay, the user has reacted with an emoji, let us find out which one!
             if reaction.emoji in number_dict:
                 await ctx.send(f"You have selected {number_dict[reaction.emoji]} points in your {stat} stat.")
 
+        # After user has picked their stats, run the $mystats command for them.
         await self.mystats.callback(self=self, ctx=ctx)
-
-
-    @commands.command()
-    async def restart(self, ctx):
-        pass
 
 def setup(client):
     client.add_cog(TextAdventure(client))

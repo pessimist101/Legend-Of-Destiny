@@ -49,7 +49,7 @@ async def reload(ctx, extension):
         await ctx.send('You are not an authorised user. If you believe this is a mistake please contact <@377212919068229633>')
         return
 
-@client.command()
+@client.command(aliases=['restart'])
 async def snuggle_reload(ctx):
     if ctx.author.id in config['authorisedUsers']:
         os.system("tmux new-session -d -s shta; tmux send-keys -t shta 'python3 /home/shta/SHTAbot/bot.py' Enter")
