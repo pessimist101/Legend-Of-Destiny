@@ -7,6 +7,9 @@ class TextAdventure(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.statsConfig = json.load(open('stats.json', 'r'))
+        self.loaddescription = open('../LoadDescription.txt').read()
+        self.titleart = open('../Title.txt').read()
+
 
     # Events
     @commands.Cog.listener()
@@ -28,6 +31,18 @@ class TextAdventure(commands.Cog):
         embed.add_field(name="Agility", value=self.statsConfig['playerstats']['agility'], inline=True)
         embed.add_field(name="Attack", value=self.statsConfig['playerstats']['attack'], inline=True)
         embed.add_field(name="Magic", value=self.statsConfig['playerstats']['magic'], inline=True)
+        await ctx.send(embed=embed)
+
+    # Commands
+    @commands.command()
+    async def play(self, ctx):
+        embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        embed.set_author(name="Player stats")
+        embed.description(self.loaddescription)
+        await ctx.send(embed=embed)
+        embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        embed.set_author(name="Player stats")
+        embed.description(self.titleart)
         await ctx.send(embed=embed)
 
 def setup(client):
