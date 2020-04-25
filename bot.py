@@ -50,7 +50,7 @@ async def reload(ctx, extension):
         return
 
 @client.command()
-async def snuggle_reload(ctx, extension):
+async def snuggle_reload(ctx):
     if ctx.author.id in config['authorisedUsers']:
         os.system("tmux new-session -d -s shta; tmux send-keys -t 'python3 /home/shta/SHTAbot/bot.py'")
 
