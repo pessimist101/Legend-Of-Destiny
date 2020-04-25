@@ -32,7 +32,7 @@ class TextAdventure(commands.Cog):
             if player[1] == str(ctx.author.id):
                 print(" > found in database")
                 stats = player[2:]
-                return
+                break
             else:
                 print(" > not in database")
                 continue
