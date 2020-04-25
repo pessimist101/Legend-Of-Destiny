@@ -85,7 +85,7 @@ class TextAdventure(commands.Cog):
         elif reaction.emoji == '2️⃣':
             await ctx.send("You selected two")
         elif reaction.emoji == '3️⃣':
-            await tx.send("You selected three")
+            await ctx.send("You selected three")
         elif reaction.emoji == '4️⃣':
             await ctx.send("You selected four")
         elif reaction.emoji == '5️⃣':
