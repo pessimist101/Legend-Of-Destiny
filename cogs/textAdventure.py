@@ -14,7 +14,7 @@ class TextAdventure(commands.Cog):
     async def on_ready(self):
         print('Ready cog online')
         self.loadDescription = open('LoadDescription.txt').read()
-        self.title = open('Title.txt').read()
+        self.titleart = open('Title.txt').read()
         await self.client.get_channel(config['logChannel']).send(title)
         await self.client.get_channel(config['logChannel']).send(loadDescription)
 
@@ -36,7 +36,7 @@ class TextAdventure(commands.Cog):
     async def play(self, ctx):
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
         embed.set_author(name="Player stats")
-        embed.description(self.loaddescription)
+        embed.description(self.loadDescription)
         await ctx.send(embed=embed)
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
         embed.set_author(name="Player stats")
