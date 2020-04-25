@@ -7,16 +7,14 @@ class TextAdventure(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.statsConfig = json.load(open('stats.json', 'r'))
-        self.loaddescription = open('LoadDescription.txt').read()
-        self.titleart = open('Title.txt').read()
 
 
     # Events
     @commands.Cog.listener()
     async def on_ready(self):
         print('Ready cog online')
-        loadDescription = open('loadDescription.txt').read()
-        title = open('title.txt').read()
+        loadDescription = open('LoadDescription.txt').read()
+        title = open('Title.txt').read()
         await self.client.get_channel(config['logChannel']).send(title)
         await self.client.get_channel(config['logChannel']).send(loadDescription)
 
