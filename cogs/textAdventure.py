@@ -16,7 +16,7 @@ class TextAdventure(commands.Cog):
     # Events
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Ready cog online')
+        print('Text Adventure cog online')
 
     # Commands
     @commands.command()
@@ -33,7 +33,7 @@ class TextAdventure(commands.Cog):
                 return
             else:
                 print(" > not in database")
-                return False
+                continue
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
         embed.set_author(name="Player stats")
         embed.add_field(name="Health", value=stats[0], inline=True)
