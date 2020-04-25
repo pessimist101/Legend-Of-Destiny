@@ -49,6 +49,17 @@ async def reload(ctx, extension):
         await ctx.send('You are not an authorised user. If you believe this is a mistake please contact <@377212919068229633>')
         return
 
+@client.command()
+async def snuggle_reload(ctx, extension):
+    if ctx.author.id in config['authorisedUsers']:
+        os.system("tmux new-session -d -s shta; tmux send-keys -t 'python3 /home/shta/SHTAbot/bot.py'")
+
+        await ctx.send('bye fam')
+        exit()
+    else:
+        await ctx.send('You are not an authorised user. If you believe this is a mistake please contact <@377212919068229633>')
+        return
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
