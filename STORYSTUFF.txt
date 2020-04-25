@@ -1,4 +1,12 @@
 ===================================================================================================
 ---------------------------------------------------------------------------------------------------
->> BASIC
+Basic plot (DELETE LATER)
+Player is hired by the local village to clear out an abandoned mineshaft of evil entities that lurk within.
+When the player enters the mine, it closes behind them. The only way out is to get ot the other end of the mine.
+Each room is insecure: It closes the path behind upon entering
+This insecurity was caused by the last adventurer to attempt this quest -- There have been many,
+and this is shown by the vast array of second hand, albeit useful, items that are scattered
+throughout the mine.
+
+
 
