@@ -1,5 +1,5 @@
-===================================================================================================
----------------------------------------------------------------------------------------------------
+==============================================
+----------------------------------------------------------------------------
 *You find yourself standing before a mighty stone cliff some hundred feet tall in which a mine has been dug out. Looking down, you see the entrance: An unnaturally square hole in the rock blackened with outreaching soot and held up by mossy and rotten support beams that leads into a humid and pitch-coloured corridor.
 *You inhale deeply. You look at your surroundings one last time, contemplating the route through the evergreens you took on your way here. It was so beautiful.
 
@@ -7,12 +7,9 @@
 
 *You enter the mine.
 
-
 *It's dark. A few steps in and already it is difficult to see the daylight behind you. This darkness is like nothing you have experienced before -- It is almost tangible.
 
-
 *...*
-
 
 *You can no longer see the daylight behind you. You strike a match and light your guiding lantern, compelling the shadows with a warm and flickering glow.
 *Ahead of you lies a wall of darkness, similar to the one you experienced when entering the mine.
