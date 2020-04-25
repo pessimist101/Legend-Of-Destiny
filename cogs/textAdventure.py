@@ -83,7 +83,7 @@ class TextAdventure(commands.Cog):
             def reaction_info_check(reaction, user):
                 return user == ctx.author and reaction.message.id == messageObject.id
 
-            # Pause/wait for the user to react with an emoji that meets the above conition.
+            # Pause/wait for the user to react with an emoji that meets the above condition.
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
 
             # Okay, the user has reacted with an emoji, let us find out which one!
