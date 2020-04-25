@@ -16,7 +16,7 @@ class TextAdventure(commands.Cog):
     # Events
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Ready cog online')
+        print('Text Adventure cog online')
 
     # Commands
     @commands.command()
@@ -27,21 +27,22 @@ class TextAdventure(commands.Cog):
         cursor.execute("""select * from playerstats where discordID = {};""".format(ctx.author.id))
         results = cursor.fetchall()
         for player in results:
-            if player[1] == ctx.author.id:
+            print(f'checking {player[1]}')
+            if player[1] == str(ctx.author.id):
                 print(" > found in database")
                 stats = player[2:]
                 return
             else:
                 print(" > not in database")
-                return False
-        embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        embed.set_author(name="Player stats")
-        embed.add_field(name="Health", value=stats[0], inline=True)
-        embed.add_field(name="Armour", value=stats[1], inline=True)
-        embed.add_field(name="Agility", value=stats[2], inline=True)
-        embed.add_field(name="Attack", value=stats[3], inline=True)
-        embed.add_field(name="Magic", value=stats[4], inline=True)
-        await ctx.send(embed=embed)
+                continue
+        #embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        #embed.set_author(name="Player stats")
+        #embed.add_field(name="Health", value=stats[0], inline=True)
+        #embed.add_field(name="Armour", value=stats[1], inline=True)
+        #embed.add_field(name="Agility", value=stats[2], inline=True)
+        #embed.add_field(name="Attack", value=stats[3], inline=True)
+        #embed.add_field(name="Magic", value=stats[4], inline=True)
+        #await ctx.send(embed=embed)
         cursor.close()
         connection.close()
 
