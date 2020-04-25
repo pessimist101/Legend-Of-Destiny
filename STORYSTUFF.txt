@@ -1,12 +1,5 @@
 ===================================================================================================
 ---------------------------------------------------------------------------------------------------
-Basic plot (DELETE LATER)
-Player is hired by the local village to clear out an abandoned mineshaft of evil entities that lurk within.
-When the player enters the mine, it closes behind them. The only way out is to get ot the other end of the mine.
-Each room is insecure: It closes the path behind upon entering
-This insecurity was caused by the last adventurer to attempt this quest -- There have been many,
-and this is shown by the vast array of second hand, albeit useful, items that are scattered
-throughout the mine.
-
-
-
+*You find yourself standing before a mighty stone cliff some hundred feet tall in which a mine has been dug out. Looking down, you see the entrance: An unnaturally square hole in the rock blackened with outreaching soot and held up by mossy and rotten support beams that leads into a humid and pitch-coloured corridor.
+*You inhale deeply. You look at your surroundings one last time, contemplating the route through the evergreens you took on your way here. It was so beautiful.
+*You enter the mine.
