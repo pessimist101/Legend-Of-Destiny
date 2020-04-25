@@ -52,11 +52,7 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def play(self, ctx):
-        embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        embed.set_author(name="Player stats")
-        embed.description(self.loadDescription)
-        await ctx.send(embed=embed)
-        embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=self.loadDescription)
         embed.set_author(name="Start game")
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
         embed.description()
