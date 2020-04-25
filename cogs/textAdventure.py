@@ -17,6 +17,7 @@ class TextAdventure(commands.Cog):
         self.titleart = open('Title.txt').read()
         await self.client.get_channel(config['logChannel']).send(title)
         await self.client.get_channel(config['logChannel']).send(loadDescription)
+        print(self.titleart)
 
 
     # Commands
