@@ -66,9 +66,9 @@ class TextAdventure(commands.Cog):
         connection.close()
 
         stats_list = ['armour', 'agility', 'attack', 'magic']
-
+        number_dict = ['1️⃣': 'one', '2️⃣': 'two', '3️⃣': 'three', '4️⃣': 'four', '5️⃣': 'five']
+        # part 2 the reckoning
         for stat in stats_list:
-            # part 2 the reckoning (armour)
             embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much {stat} do you have, <@{ctx.author.id}>?")
             messageObject = await ctx.send(embed=embedObject)
 
@@ -83,16 +83,9 @@ class TextAdventure(commands.Cog):
                 return user == ctx.author and reaction.message.id == messageObject.id
 
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-            if reaction.emoji == '1️⃣':
-                await ctx.send(f"You selected one point in your {stat} stat.")
-            elif reaction.emoji == '2️⃣':
-                await ctx.send(f"You selected two points in your {stat} stat.")
-            elif reaction.emoji == '3️⃣':
-                await ctx.send(f"You selected three points in your {stat} stat.")
-            elif reaction.emoji == '4️⃣':
-                await ctx.send(f"You selected four points in your {stat} stat.")
-            elif reaction.emoji == '5️⃣':
-                await ctx.send(f"You selected five points in your {stat} stat.")
+            for key, value in number_dict:
+                if reaction.emoji == 'key':
+                    await ctx.send(f"You have selected {value} points in your {stat} stat.")
 
                 # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
 
