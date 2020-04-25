@@ -35,6 +35,7 @@ class TextAdventure(commands.Cog):
                 break
             else:
                 print(" > not in database")
+                await ctx.send("Sorry fam, I couldn't find you in the archives :(")
                 continue
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
         embed.set_thumbnail(url=ctx.author.avatar_url)
