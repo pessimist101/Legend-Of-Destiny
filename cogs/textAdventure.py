@@ -25,6 +25,7 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def mystats(self, ctx):
+        print(ctx.author.id)
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
         cursor.execute("""select * from playerstats where discordID = {};""".format(ctx.author.id))
