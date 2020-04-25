@@ -7,8 +7,8 @@ class TextAdventure(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.statsConfig = json.load(open('stats.json', 'r'))
-        self.loaddescription = open('../LoadDescription.txt').read()
-        self.titleart = open('../Title.txt').read()
+        self.loaddescription = open('LoadDescription.txt').read()
+        self.titleart = open('Title.txt').read()
 
 
     # Events
