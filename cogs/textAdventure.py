@@ -79,19 +79,17 @@ class TextAdventure(commands.Cog):
         def reaction_info_check(reaction, user):
             return user == ctx.author and reaction.message.id == messageObject.id
 
-        try:
-            reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-        else:
-            if reaction.emoji == '1️⃣':
-                ctx.send("You selected one")
-            elif reaction.emoji == '2️⃣':
-                ctx.send("You selected two")
-            elif reaction.emoji == '3️⃣':
-                ctx.send("You selected three")
-            elif reaction.emoji == '4️⃣':
-                ctx.send("You selected four")
-            elif reaction.emoji == '5️⃣':
-                ctx.send("You selected five")
+        reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+        if reaction.emoji == '1️⃣':
+            ctx.send("You selected one")
+        elif reaction.emoji == '2️⃣':
+            ctx.send("You selected two")
+        elif reaction.emoji == '3️⃣':
+            ctx.send("You selected three")
+        elif reaction.emoji == '4️⃣':
+            ctx.send("You selected four")
+        elif reaction.emoji == '5️⃣':
+            ctx.send("You selected five")
 
                 # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
 
