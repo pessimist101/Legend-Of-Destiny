@@ -56,6 +56,15 @@ class TextAdventure(commands.Cog):
         embed.set_author(name="Start game")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
         await ctx.send(embed=embed)
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+                        INSERT INTO playerstats (discordID,health,armour,agility,attack,magic)
+                        VALUES ({},5,5,5,5,5);
+        """.format(ctx.author.id))
+        connection.commit()
+        cursor.close()
+        connection.close()
 
     @commands.command()
     async def titleart(self, ctx):
