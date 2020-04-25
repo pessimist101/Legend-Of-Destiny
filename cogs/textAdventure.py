@@ -12,6 +12,13 @@ class TextAdventure(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('Ready cog online')
+        try:
+        self.connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="ta_pool",
+            host=dbConfig['host'],
+            user=dbConfig['user'],
+            passwd=dbConfig['passwd'],
+            database=dbConfig['database'])
+        self.mycursor = mydb.cursor()
 
 
     # Commands
