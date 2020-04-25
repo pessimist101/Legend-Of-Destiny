@@ -65,31 +65,34 @@ class TextAdventure(commands.Cog):
         cursor.close()
         connection.close()
 
-        # part 2 the reckoning
-        embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, <@{ctx.author.id}>?")
-        messageObject = await ctx.send(embed=embedObject)
+        stats_list = ['armour', 'agility', 'attack', 'magic']
 
-        await messageObject.add_reaction("1️⃣")
-        await messageObject.add_reaction("2️⃣")
-        await messageObject.add_reaction("3️⃣")
-        await messageObject.add_reaction("4️⃣")
-        await messageObject.add_reaction("5️⃣")
+        for stat in stats_list:
+            # part 2 the reckoning (armour)
+            embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much {stat} do you have, <@{ctx.author.id}>?")
+            messageObject = await ctx.send(embed=embedObject)
+
+            await messageObject.add_reaction("1️⃣")
+            await messageObject.add_reaction("2️⃣")
+            await messageObject.add_reaction("3️⃣")
+            await messageObject.add_reaction("4️⃣")
+            await messageObject.add_reaction("5️⃣")
 
 
-        def reaction_info_check(reaction, user):
-            return user == ctx.author and reaction.message.id == messageObject.id
+            def reaction_info_check(reaction, user):
+                return user == ctx.author and reaction.message.id == messageObject.id
 
-        reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-        if reaction.emoji == '1️⃣':
-            await ctx.send("You selected one")
-        elif reaction.emoji == '2️⃣':
-            await ctx.send("You selected two")
-        elif reaction.emoji == '3️⃣':
-            await ctx.send("You selected three")
-        elif reaction.emoji == '4️⃣':
-            await ctx.send("You selected four")
-        elif reaction.emoji == '5️⃣':
-            await ctx.send("You selected five")
+            reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+            if reaction.emoji == '1️⃣':
+                await ctx.send("You selected one point in your {stat} stat.")
+            elif reaction.emoji == '2️⃣':
+                await ctx.send("You selected two points in your {stat} stat.")
+            elif reaction.emoji == '3️⃣':
+                await ctx.send("You selected three points in your {stat} stat.")
+            elif reaction.emoji == '4️⃣':
+                await ctx.send("You selected four points in your {stat} stat.")
+            elif reaction.emoji == '5️⃣':
+                await ctx.send("You selected five points in your {stat} stat.")
 
                 # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
 
