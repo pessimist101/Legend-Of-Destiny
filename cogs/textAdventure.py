@@ -17,10 +17,6 @@ class TextAdventure(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('Ready cog online')
-        await self.client.get_channel(self.config['logChannel']).send(titleArt)
-        await self.client.get_channel(self.config['logChannel']).send(loadDescription)
-        print(self.titleart)
-
 
     # Commands
     @commands.command()
