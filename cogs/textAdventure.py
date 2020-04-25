@@ -36,14 +36,14 @@ class TextAdventure(commands.Cog):
             else:
                 print(" > not in database")
                 continue
-        #embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        #embed.set_author(name="Player stats")
-        #embed.add_field(name="Health", value=stats[0], inline=True)
-        #embed.add_field(name="Armour", value=stats[1], inline=True)
-        #embed.add_field(name="Agility", value=stats[2], inline=True)
-        #embed.add_field(name="Attack", value=stats[3], inline=True)
-        #embed.add_field(name="Magic", value=stats[4], inline=True)
-        #await ctx.send(embed=embed)
+        embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        embed.set_author(name="Player stats")
+        embed.add_field(name="Health", value=stats[0], inline=True)
+        embed.add_field(name="Armour", value=stats[1], inline=True)
+        embed.add_field(name="Agility", value=stats[2], inline=True)
+        embed.add_field(name="Attack", value=stats[3], inline=True)
+        embed.add_field(name="Magic", value=stats[4], inline=True)
+        await ctx.send(embed=embed)
         cursor.close()
         connection.close()
 
