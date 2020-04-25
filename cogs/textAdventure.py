@@ -66,7 +66,7 @@ class TextAdventure(commands.Cog):
         connection.close()
 
         # part 2 the reckoning
-        embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, {ctx.author}?")
+        embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, <@{ctx.author.id}>?")
         messageObject = await ctx.send(embed=embedObject)
 
         await messageObject.add_reaction("1️⃣")
@@ -81,10 +81,7 @@ class TextAdventure(commands.Cog):
 
         try:
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-        except asyncio.TimeoutError:
-            await utility.soft_clear(messageObject)
         else:
-            await utility.soft_clear(messageObject)
             if reaction.emoji == '1️⃣':
                 ctx.send("You selected one")
             elif reaction.emoji == '2️⃣':
