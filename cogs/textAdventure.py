@@ -28,7 +28,7 @@ class TextAdventure(commands.Cog):
         results = cursor.fetchall()
         for player in results:
             print(f'checking {player[1]}')
-            if player[1] == str.ctx.author.id:
+            if player[1] == str(ctx.author.id):
                 print(" > found in database")
                 stats = player[2:]
                 return
