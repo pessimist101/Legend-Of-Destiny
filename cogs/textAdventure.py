@@ -83,9 +83,9 @@ class TextAdventure(commands.Cog):
                 return user == ctx.author and reaction.message.id == messageObject.id
 
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-            for key, value in number_dict:
-                if reaction.emoji == 'key':
-                    await ctx.send(f"You have selected {value} points in your {stat} stat.")
+            for emoji in number_dict:
+                if reaction.emoji == emoji:
+                    await ctx.send(f"You have selected {number_dict[emoji]} points in your {stat} stat.")
 
                 # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
 
