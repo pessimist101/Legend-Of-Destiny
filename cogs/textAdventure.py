@@ -74,12 +74,8 @@ class TextAdventure(commands.Cog):
             embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much {stat} do you have, <@{ctx.author.id}>?")
             messageObject = await ctx.send(embed=embedObject)
 
-            await messageObject.add_reaction("1️⃣")
-            await messageObject.add_reaction("2️⃣")
-            await messageObject.add_reaction("3️⃣")
-            await messageObject.add_reaction("4️⃣")
-            await messageObject.add_reaction("5️⃣")
-
+            for emoji in number_dict:
+                await messageObject.add_reaction(f"{emoji}")
 
             def reaction_info_check(reaction, user):
                 return user == ctx.author and reaction.message.id == messageObject.id
@@ -90,6 +86,7 @@ class TextAdventure(commands.Cog):
                     await ctx.send(f"You have selected {number_dict[emoji]} points in your {stat} stat.")
 
         await self.mystats.callback(self=self, ctx=ctx)
+
 
     @commands.command()
     async def restart(self, ctx):
