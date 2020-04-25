@@ -47,7 +47,7 @@ class TextAdventure(commands.Cog):
 
     @commands.command()
     async def titleart(self, ctx):
-        await ctx.send(titleArt)
+        await ctx.send(self.titleArt)
 
 def setup(client):
     client.add_cog(TextAdventure(client))
