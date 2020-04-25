@@ -1,0 +1,27 @@
+{
+    "playerstats":{
+        "name":"Player",
+        "health":10,
+        "armour":5,
+        "agility":4,
+        "attack":6,
+        "magic":2
+    },
+    "enemies":[
+        {
+            "name":"Player",
+            "health":10,
+            "armour":5,
+            "agility":4,
+            "attack":6,
+            "magic":2
+        },
+        {
+            "name":"Goblin",
+            "health":7,
+            "armour":2,
+            "agility":4,
+            "attack":5,
+            "magic":0
+        }]
+}
