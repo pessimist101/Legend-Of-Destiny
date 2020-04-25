@@ -27,7 +27,7 @@ class TextAdventure(commands.Cog):
     async def mystats(self, ctx):
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        cursor.execute("""SELECT playerstats.discordID;""")
+        cursor.execute("""select * from playerstats where discordID = {};""".format(ctx.author.id))
         results = cursor.fetchall()
         for player in results:
             if player[1] == ctx.author.id:
@@ -55,7 +55,6 @@ class TextAdventure(commands.Cog):
         embed = discord.Embed(colour=discord.Colour(0xdbc036), description=self.loadDescription)
         embed.set_author(name="Start game")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
-        embed.set_footer(text="v0.0.1                               Legend of Destiny Bot --  Sauce Code -- 2020-04-25")
         await ctx.send(embed=embed)
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
@@ -66,6 +65,10 @@ class TextAdventure(commands.Cog):
         connection.commit()
         cursor.close()
         connection.close()
+
+    @commands.command()
+    async def restart(self, ctx):
+
 
     @commands.command()
     async def titleart(self, ctx):
