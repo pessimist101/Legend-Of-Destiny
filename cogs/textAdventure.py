@@ -65,8 +65,8 @@ class TextAdventure(commands.Cog):
         connection.close()
 
         # part 2 the reckoning
-        messageObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, {ctx.author}?")
-        await ctx.send(embed=messageObject)
+        embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, {ctx.author}?")
+        messageObject = await ctx.send(embed=embedObject)
 
         await messageObject.add_reaction("1️⃣")
         await messageObject.add_reaction("2️⃣")
