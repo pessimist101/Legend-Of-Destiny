@@ -37,7 +37,7 @@ class TextAdventure(commands.Cog):
                 print(" > not in database")
                 continue
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        embed.set_author(name=f"<@{ctx.author.id}>'s' Stats!")
+        embed.set_author(name=f"{ctx.author.mention}'s Stats!")
         embed.add_field(name="Health", value=stats[0], inline=True)
         embed.add_field(name="Armour", value=stats[1], inline=True)
         embed.add_field(name="Agility", value=stats[2], inline=True)
@@ -87,7 +87,7 @@ class TextAdventure(commands.Cog):
                 if reaction.emoji == emoji:
                     await ctx.send(f"You have selected {number_dict[emoji]} points in your {stat} stat.")
 
-            await self.mystats.callback(self=self, ctx=ctx)
+        await self.mystats.callback(self=self, ctx=ctx)
 
     @commands.command()
     async def restart(self, ctx):
