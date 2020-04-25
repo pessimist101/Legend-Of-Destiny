@@ -80,7 +80,7 @@ class TextAdventure(commands.Cog):
             return user == ctx.author and reaction.message.id == messageObject.id
 
         try:
-            reaction, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+            reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
         except asyncio.TimeoutError:
             await utility.soft_clear(messageObject)
         else:
