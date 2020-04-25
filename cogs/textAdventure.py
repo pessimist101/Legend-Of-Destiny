@@ -84,15 +84,15 @@ class TextAdventure(commands.Cog):
 
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
             if reaction.emoji == '1️⃣':
-                await ctx.send("You selected one point in your {stat} stat.")
+                await ctx.send(f"You selected one point in your {stat} stat.")
             elif reaction.emoji == '2️⃣':
-                await ctx.send("You selected two points in your {stat} stat.")
+                await ctx.send(f"You selected two points in your {stat} stat.")
             elif reaction.emoji == '3️⃣':
-                await ctx.send("You selected three points in your {stat} stat.")
+                await ctx.send(f"You selected three points in your {stat} stat.")
             elif reaction.emoji == '4️⃣':
-                await ctx.send("You selected four points in your {stat} stat.")
+                await ctx.send(f"You selected four points in your {stat} stat.")
             elif reaction.emoji == '5️⃣':
-                await ctx.send("You selected five points in your {stat} stat.")
+                await ctx.send(f"You selected five points in your {stat} stat.")
 
                 # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
 
