@@ -64,6 +64,39 @@ class TextAdventure(commands.Cog):
         cursor.close()
         connection.close()
 
+        # part 2 the reckoning
+        messageObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much armour do you have, {ctx.author}?")
+        await ctx.send(embed=messageObject)
+
+        await messageObject.add_reaction("1️⃣")
+        await messageObject.add_reaction("2️⃣")
+        await messageObject.add_reaction("3️⃣")
+        await messageObject.add_reaction("4️⃣")
+        await messageObject.add_reaction("5️⃣")
+
+
+        def reaction_info_check(reaction, user):
+            return user == ctx.author and reaction.message.id == messageObject.id
+
+        try:
+            reaction, user = await self.bot.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+        except asyncio.TimeoutError:
+            await utility.soft_clear(messageObject)
+        else:
+            await utility.soft_clear(messageObject)
+            if reaction.emoji == '1️⃣':
+                ctx.send("You selected one")
+            elif reaction.emoji == '2️⃣':
+                ctx.send("You selected two")
+            elif reaction.emoji == '3️⃣':
+                ctx.send("You selected three")
+            elif reaction.emoji == '4️⃣':
+                ctx.send("You selected four")
+            elif reaction.emoji == '5️⃣':
+                ctx.send("You selected five")
+
+                # await self.PlayerProfile.callback(self=self, ctx=ctx, player=self.playerObject.UUID, edit=True, messageObject=messageObject)
+
     @commands.command()
     async def restart(self, ctx):
         pass
