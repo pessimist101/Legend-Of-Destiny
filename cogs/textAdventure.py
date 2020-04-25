@@ -39,10 +39,10 @@ class TextAdventure(commands.Cog):
         embed.set_author(name="Player stats")
         embed.description(self.loadDescription)
         await ctx.send(embed=embed)
-        embed = discord.Embed(colour=discord.Colour(0xdbc036))
-        embed.set_author(name="Player stats")
-        embed.description(self.titleart)
-        await ctx.send(embed=embed)
+        #embed = discord.Embed(colour=discord.Colour(0xdbc036))
+        #embed.set_author(name="Player stats")
+        #embed.description(self.titleart)
+        #await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(TextAdventure(client))
