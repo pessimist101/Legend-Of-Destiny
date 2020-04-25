@@ -2,6 +2,9 @@ import discord
 from discord.ext import commands
 import json
 
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
 class TextAdventure(commands.Cog):
 
     def __init__(self, client):
@@ -14,8 +17,8 @@ class TextAdventure(commands.Cog):
     async def on_ready(self):
         print('Ready cog online')
         self.loadDescription = open('LoadDescription.txt').read()
-        self.titleart = open('Title.txt').read()
-        await self.client.get_channel(config['logChannel']).send(title)
+        self.titleArt = open('Title.txt').read()
+        await self.client.get_channel(config['logChannel']).send(titleArt)
         await self.client.get_channel(config['logChannel']).send(loadDescription)
         print(self.titleart)
 
