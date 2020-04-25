@@ -12,11 +12,11 @@ class TextAdventure(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('Ready cog online')
-        
+
 
     # Commands
     @commands.command()
-    async def playerstats(self, ctx):
+    async def mystats(self, ctx):
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
         embed.set_author(name="Player stats")
         embed.add_field(name="Health", value=self.statsConfig['playerstats']['health'], inline=True)
