@@ -87,7 +87,7 @@ class TextAdventure(commands.Cog):
             # Pause/wait for the user to react with an emoji that meets the above condition.
             try:
                 reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-            except futures.TimeoutError()
+            except futures.TimeoutError:
                 await ctx.send(f"You've taken too long to choose your stats. Game end. (Waited 30 seconds)")
 
             # Okay, the user has reacted with an emoji, let us find out which one!
@@ -142,7 +142,7 @@ class TextAdventure(commands.Cog):
 
         try:
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-        except futures.TimeoutError()
+        except futures.TimeoutError:
             await ctx.send(f"You have decided to stay where you are, to not move again out of terror for what lies within. Game end. (Waited 30 seconds)")
 
         if reaction.emoji in next_move:
