@@ -109,6 +109,8 @@ class TextAdventure(commands.Cog):
             room_list = rooms_visited
             if len(room_list) < 10:
                 current_room = 'boss'
+            elif len(room_list) == 7:
+                extra_text = "\n\n*You feel a rapid and unexpected wave of dread engulf your body. You lose your footing slightly; You grip your head. It hurts. You reckon you're almost there."
             else:
                 current_room = random.choice(room_list)
         else:
@@ -118,12 +120,12 @@ class TextAdventure(commands.Cog):
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
-        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description, title=f"Room {current_room}")
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=f"{room_description}{extra_text}", title=f"Room {current_room}")
         embed.set_author(name="Text Adventure!")
         messageObject = await ctx.send(embed=embed)
 
         ### Time to pick the next room! ###
-        next_move = {'👈': random.choice(room_list), '👆': random.choice(room_list), '👉': random.choice(room_list)}
+        next_move = {'👈': 'left', '👆': 'forwards', '👉': 'right'}
 
         for emoji in next_move:
             await messageObject.add_reaction(f"{emoji}")
@@ -135,7 +137,7 @@ class TextAdventure(commands.Cog):
         reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
 
         if reaction.emoji in next_move:
-            await ctx.send(f"You have decided to walk to room {next_move[reaction.emoji]}...")
+            await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
 
         room_list.remove(current_room)
 
