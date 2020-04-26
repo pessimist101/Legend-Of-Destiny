@@ -90,10 +90,10 @@ class TextAdventure(commands.Cog):
                 reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
             except asyncio.TimeoutError:
                 await ctx.send(f"You've taken too long to choose your stats. Game end. (Waited 30 seconds)")
-
-            # Okay, the user has reacted with an emoji, let us find out which one!
-            if reaction.emoji in number_dict:
-                await ctx.send(f"You have selected {number_dict[reaction.emoji]} points in your {stat} stat.")
+            else:
+                # Okay, the user has reacted with an emoji, let us find out which one!
+                if reaction.emoji in number_dict:
+                    await ctx.send(f"You have selected {number_dict[reaction.emoji]} points in your {stat} stat.")
 
         # After user has picked their stats, run the $mystats command for them.
         await self.mystats.callback(self=self, ctx=ctx)
@@ -104,13 +104,13 @@ class TextAdventure(commands.Cog):
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
         extra_text = ""
-        print(f'{ctx.author.name} | Rooms visited = {rooms_visited}')
+        # DEBUG: print(f'{ctx.author.name} | Rooms visited = {rooms_visited}')
         if rooms_visited == []:
-            print(f"{ctx.author.name} | Generating room list")
+            print(f"{ctx.author.name} | Picking first room...")
             room_list = list(range(1,21))
             current_room = random.choice(room_list)
         elif len(rooms_visited) > 0:
-            print(f"{ctx.author.name} | Using old rooms list")
+            print(f"{ctx.author.name} | Picking next room...")
             room_list = rooms_visited
             if len(room_list) < 13:
                 current_room = 'boss'
@@ -120,7 +120,7 @@ class TextAdventure(commands.Cog):
             else:
                 current_room = random.choice(room_list)
         print(f'{ctx.author.name} | Current room = {current_room}')
-        print(f'{ctx.author.name} | Rooms list = {room_list}')
+        # DEBUG: print(f'{ctx.author.name} | Rooms list = {room_list}')
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
@@ -145,13 +145,17 @@ class TextAdventure(commands.Cog):
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
         except asyncio.TimeoutError:
             await ctx.send(f"You have decided to stay where you are, to not move again out of terror for what lies within. Game end. (Waited 30 seconds)")
+            try:
+                await messageObject.clear_reactions()
+            except:
+                pass
+        else:
+            if reaction.emoji in next_move:
+                await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
 
-        if reaction.emoji in next_move:
-            await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
+            room_list.remove(current_room)
 
-        room_list.remove(current_room)
-
-        await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=room_list)
+            await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=room_list)
 
 def setup(client):
     client.add_cog(TextAdventure(client))
