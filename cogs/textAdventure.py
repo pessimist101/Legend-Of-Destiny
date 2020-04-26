@@ -103,13 +103,15 @@ class TextAdventure(commands.Cog):
         if rooms_visited == []:
             print("Generating room list")
             room_list = list(range(1,21))
-            room_list.append('boss')
         elif len(rooms_visited) > 0:
-            room_list = rooms_visited
             print("Using old rooms list")
+            room_list = rooms_visited
+            if len(room_list) < 10:
+                current_room = 'boss'
+            else:
+                current_room = random.choice(room_list)
         else:
             raise ValueError(f"Exceptional state, room encounter has invalid 'rooms visited': {rooms_visited}")
-        current_room = random.choice(room_list)
         print(f'Current room = {current_room}')
         print(f'Rooms list = {room_list}')
 
@@ -132,7 +134,7 @@ class TextAdventure(commands.Cog):
         reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
 
         if reaction.emoji in next_move:
-            await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
+            await ctx.send(f"You have decided to walk to room {next_move[reaction.emoji]}...")
 
         room_list.remove(current_room)
 
