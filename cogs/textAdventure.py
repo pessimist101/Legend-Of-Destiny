@@ -69,8 +69,8 @@ class TextAdventure(commands.Cog):
         connection.close()
 
         ### Time to pick people's stats! ###
-        stats_list = ['armour', 'agility', 'attack', 'magic'] # What stats to include?
-        number_dict = {'1️⃣': 'one', '2️⃣': 'two', '3️⃣': 'three', '4️⃣': 'four', '5️⃣': 'five'} # What is each emoji called?
+        stats_list = {'armour': 5, 'agility': 5, 'attack': 5, 'magic': 5} # What stats to include?
+        number_dict = {'1️⃣': ['one', 1], '2️⃣': ['two', 2], '3️⃣': ['three', 3], '4️⃣': ['four', 4], '5️⃣': ['five', 5]} # What is each emoji called?
 
         for stat in stats_list: # For every stat in the list, make a message asking how much people have...
             embedObject = discord.Embed(colour=discord.Colour(0xdbc036), description=f"How much {stat} do you have, <@{ctx.author.id}>?")
@@ -93,8 +93,10 @@ class TextAdventure(commands.Cog):
             else:
                 # Okay, the user has reacted with an emoji, let us find out which one!
                 if reaction.emoji in number_dict:
-                    await ctx.send(f"You have selected {number_dict[reaction.emoji]} points in your {stat} stat.")
+                    await ctx.send(f"You have selected {number_dict[reaction.emoji][1]} points in your {stat} stat.")
+                    stats_list[stat] = stats_list[stat] + number_dict[reaction.emoji][2]
 
+        print(f"{ctx.author.name} · Has chosen their stats as: {stats_list}...")
         # After user has picked their stats, run the $mystats command for them.
         await self.mystats.callback(self=self, ctx=ctx)
         await self.room_encounter.callback(self=self, ctx=ctx)
