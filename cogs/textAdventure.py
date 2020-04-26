@@ -132,7 +132,7 @@ class TextAdventure(commands.Cog):
 
         how_many_fingers = range(random.randint(1,3))
         for number in how_many_fingers:
-            finger = random.choice(how_many_fingers)
+            finger = random.choice(next_move)
             next_move.pop(finger, None)
             await messageObject.add_reaction(finger)
 
