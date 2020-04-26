@@ -93,8 +93,8 @@ class TextAdventure(commands.Cog):
             else:
                 # Okay, the user has reacted with an emoji, let us find out which one!
                 if reaction.emoji in number_dict:
-                    await ctx.send(f"You have selected {number_dict[reaction.emoji][1]} points in your {stat} stat.")
-                    stats_list[stat] = stats_list[stat] + number_dict[reaction.emoji][2]
+                    await ctx.send(f"You have selected {number_dict[reaction.emoji][0]} points in your {stat} stat.")
+                    stats_list[stat] = stats_list[stat] + number_dict[reaction.emoji][1]
 
         print(f"{ctx.author.name} · Has chosen their stats as: {stats_list}...")
         # After user has picked their stats, run the $mystats command for them.
