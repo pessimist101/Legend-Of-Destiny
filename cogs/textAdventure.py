@@ -104,9 +104,11 @@ class TextAdventure(commands.Cog):
             print("Generating room list")
             room_list = list(range(1,21))
             room_list.append('boss')
-        elif rooms_visited.len() > 0:
+        elif len(rooms_visited) > 0:
             room_list = rooms_visited
             print("Using old rooms list")
+        else:
+            raise ValueError(f"Exceptional state, room encounter has invalid 'rooms visited': {rooms_visited}")
         current_room = random.choice(room_list)
         print(f'Current room = {current_room}')
         print(f'Rooms list = {rooms_list}')
