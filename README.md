@@ -3,7 +3,7 @@ StudentHack2020 text adventure Discord bot
 
 written by Sauce Code for StudentHack2020
 
-##Functionality
+#Functionality
 
 The bot is triggered by the `$play` command. From there, you embark on a great adventure!
 
