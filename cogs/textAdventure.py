@@ -58,16 +58,22 @@ class TextAdventure(commands.Cog):
         embed.set_author(name="Start game")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
         await ctx.send(embed=embed)
+        #search for their stats, they shouldn't exist!
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        cursor.execute("""
-                        INSERT INTO playerstats (discordID,health,armour,agility,attack,magic)
-                        VALUES ({},5,5,5,5,5);
-        """.format(ctx.author.id))
-        connection.commit()
-        cursor.close()
-        connection.close()
-
+        cursor.execute("""select * from playerstats where discordID = {};""".format(ctx.author.id))
+        results = cursor.fetchall()
+        # If I find results from past games?
+        if len(results) > 0:
+            # DELETE THEM
+            cursor.execute("""delete from playerstats where discordID is {};""".format(ctx.author.id))
+            connection.commit()
+            cursor.close()
+            connection.close()
+        else:
+            #otherwise safely close the db connection 😇
+            cursor.close()
+            connection.close()
         ### Time to pick people's stats! ###
         stats_list = {'armour': 5, 'agility': 5, 'attack': 5, 'magic': 5} # What stats to include?
         number_dict = {'1️⃣': ['one', 1], '2️⃣': ['two', 2], '3️⃣': ['three', 3], '4️⃣': ['four', 4], '5️⃣': ['five', 5]} # What is each emoji called?
@@ -97,6 +103,15 @@ class TextAdventure(commands.Cog):
                     stats_list[stat] = stats_list[stat] + number_dict[reaction.emoji][1]
 
         print(f"{ctx.author.name} · Has chosen their stats as: {stats_list}...")
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+                        INSERT INTO playerstats (discordID,health,armour,agility,attack,magic)
+                        VALUES ({},10,{},{},{},{});
+        """.format(ctx.author.id,stats['armour'],stats['agility'],stats['attack'],stats['magic']))
+        connection.commit()
+        cursor.close()
+        connection.close()
         # After user has picked their stats, run the $mystats command for them.
         await self.mystats.callback(self=self, ctx=ctx)
         await self.room_encounter.callback(self=self, ctx=ctx)
