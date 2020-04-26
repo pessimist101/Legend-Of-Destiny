@@ -110,7 +110,7 @@ class TextAdventure(commands.Cog):
             room_list = rooms_visited
             if len(room_list) < 10:
                 current_room = 'boss'
-            elif len(room_list) == 7:
+            elif len(room_list) == 13:
                 extra_text = "\n\n*You feel a rapid and unexpected wave of dread engulf your body. You lose your footing slightly; You grip your head. It hurts. You reckon you're almost there."
             else:
                 current_room = random.choice(room_list)
