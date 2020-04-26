@@ -136,7 +136,7 @@ class TextAdventure(commands.Cog):
 
         room_list.remove(current_room)
 
-        await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=rooms_list)
+        await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=room_list)
 
 def setup(client):
     client.add_cog(TextAdventure(client))
