@@ -85,7 +85,10 @@ class TextAdventure(commands.Cog):
                 return user == ctx.author and reaction.message.id == messageObject.id
 
             # Pause/wait for the user to react with an emoji that meets the above condition.
-            reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+            try:
+                reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+            except futures.TimeoutError()
+                await ctx.send(f"You've taken too long to choose your stats. Game end. (Waited 30 seconds)")
 
             # Okay, the user has reacted with an emoji, let us find out which one!
             if reaction.emoji in number_dict:
@@ -127,14 +130,20 @@ class TextAdventure(commands.Cog):
         ### Time to pick the next room! ###
         next_move = {'👈': 'left', '👆': 'forwards', '👉': 'right'}
 
-        for emoji in next_move:
-            await messageObject.add_reaction(f"{emoji}")
+        how_many_fingers = range(random.randint(1,3))
+        for number in how_many_fingers:
+            finger = random.choice(how_many_fingers)
+            next_move.pop(finger, None)
+            await messageObject.add_reaction(finger)
 
         # Predicate/condition to be used later. Check the user is the original author and it's the same message.
         def reaction_info_check(reaction, user):
             return user == ctx.author and reaction.message.id == messageObject.id
 
-        reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+        try:
+            reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+        except futures.TimeoutError()
+            await ctx.send(f"You have decided to stay where you are, to not move again out of terror for what lies within. Game end. (Waited 30 seconds)")
 
         if reaction.emoji in next_move:
             await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
