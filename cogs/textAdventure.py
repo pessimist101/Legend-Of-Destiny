@@ -14,6 +14,7 @@ class TextAdventure(commands.Cog):
         self.room_names = json.load(open('rooms/rooms.json', 'r'))
         self.loadDescription = open('LoadDescription.txt').read()
         self.titleArt = open('Title.txt').read()
+        self.items = json.load(open('items/items.json', 'r'))
 
 
     # Events
@@ -122,6 +123,13 @@ class TextAdventure(commands.Cog):
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
         extra_text = ""
+        # THIS IS COMMENTED BECAUSE IT'S WIP
+        #if bool(random.getrandbits(1)) == 0:
+        #    print("no item picked up lol, soz")
+        #else:
+        #    my_item = random.randint(0, range(len(self.items)))
+        #    for thing in my_item:
+
         # DEBUG: print(f'{ctx.author.name} · Rooms visited = {rooms_visited}')
         if rooms_visited == []:
             print(f"{ctx.author.name} · Picking first room... Poor underling...")
