@@ -109,7 +109,7 @@ class TextAdventure(commands.Cog):
         cursor.execute("""
                         INSERT INTO playerstats (discordID,health,armour,agility,attack,magic)
                         VALUES ({},10,{},{},{},{});
-        """.format(ctx.author.id,stats['armour'],stats['agility'],stats['attack'],stats['magic']))
+        """.format(ctx.author.id,stats_list['armour'],stats_list['agility'],stats_list['attack'],stats_list['magic']))
         connection.commit()
         cursor.close()
         connection.close()
