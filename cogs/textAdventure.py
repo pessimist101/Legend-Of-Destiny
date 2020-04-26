@@ -99,17 +99,22 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
+        print(f'Rooms visited = {rooms_visited}')
         if rooms_visited == []:
+            print("Generating room list")
             room_list = list(range(1,21))
             room_list.append('boss')
         elif rooms_visited.len() > 0:
             room_list = rooms_visited
+            print("Using old rooms list")
         current_room = random.choice(room_list)
+        print(f'Current room = {current_room}')
+        print(f'Rooms list = {rooms_list}')
+
 
         room_description = open(f'rooms/room{current_room}.txt').read()
-        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description, title="Room {current_room}")
-        embed.set_author(name="Room!")
-        embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description, title=f"Room {current_room}")
+        embed.set_author(name="Text Adventure!")
         messageObject = await ctx.send(embed=embed)
 
         ### Time to pick the next room! ###
