@@ -144,8 +144,8 @@ class TextAdventure(commands.Cog):
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
-        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=f"{room_description}{extra_text}", title=f"Room {current_room_name}")
-        embed.set_author(name="Text Adventure!")
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=f"{room_description}{extra_text}", title=f"{current_room_name}")
+        embed.set_author(name="Legend of Destiny")
         messageObject = await ctx.send(embed=embed)
 
         ### Time to pick the next room! ###
