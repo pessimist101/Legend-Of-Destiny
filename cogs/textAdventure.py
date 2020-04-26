@@ -103,6 +103,7 @@ class TextAdventure(commands.Cog):
         if rooms_visited == []:
             print("Generating room list")
             room_list = list(range(1,21))
+            current_room = random.choice(room_list)
         elif len(rooms_visited) > 0:
             print("Using old rooms list")
             room_list = rooms_visited
