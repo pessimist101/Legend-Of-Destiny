@@ -111,7 +111,7 @@ class TextAdventure(commands.Cog):
             raise ValueError(f"Exceptional state, room encounter has invalid 'rooms visited': {rooms_visited}")
         current_room = random.choice(room_list)
         print(f'Current room = {current_room}')
-        print(f'Rooms list = {rooms_list}')
+        print(f'Rooms list = {room_list}')
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
@@ -134,7 +134,7 @@ class TextAdventure(commands.Cog):
         if reaction.emoji in next_move:
             await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
 
-        rooms_list.remove(current_room)
+        room_list.remove(current_room)
 
         await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=rooms_list)
 
