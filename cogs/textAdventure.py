@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import json
 import asyncio
+import random
 
 class TextAdventure(commands.Cog):
 
@@ -92,6 +93,43 @@ class TextAdventure(commands.Cog):
 
         # After user has picked their stats, run the $mystats command for them.
         await self.mystats.callback(self=self, ctx=ctx)
+        await self.room_encounter.callback(self=self, ctx=ctx)
+
+
+    # Commands
+    @commands.command()
+    async def room_encounter(self, ctx, rooms_visited=[]):
+        if rooms_visited == []:
+            room_list = list(range(1,21))
+            room_list.append('boss')
+        elif rooms_visited.len() > 0:
+            room_list = rooms_visited
+        current_room = random.choice(room_list)
+
+        room_description = open(f'rooms/room{}.txt').read()
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description)
+        embed.set_author(name="Room!")
+        embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
+        messageObject = await ctx.send(embed=embed)
+
+        ### Time to pick the next room! ###
+        next_move = {'👈': random.choice(room_list), '👆': random.choice(room_list), '👉': random.choice(room_list)}
+
+        for emoji in next_move:
+            await messageObject.add_reaction(f"{emoji}")
+
+        # Predicate/condition to be used later. Check the user is the original author and it's the same message.
+        def reaction_info_check(reaction, user):
+            return user == ctx.author and reaction.message.id == messageObject.id
+
+        reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
+
+        if reaction.emoji in next_move:
+            await ctx.send(f"You have decided to walk {next_move[reaction.emoji]}...")
+
+        rooms_list.remove(current_room)
+
+        await self.room_encounter.callback(self=self, ctx=ctx, rooms_visited=rooms_list)
 
 def setup(client):
     client.add_cog(TextAdventure(client))
