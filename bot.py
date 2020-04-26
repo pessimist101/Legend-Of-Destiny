@@ -11,7 +11,7 @@ client = commands.Bot(command_prefix = config['prefix'])
 
 @client.event
 async def on_ready():
-    print('I\'m ready!')
+    print("server · I'm ready to destroy some souls...")
     await client.get_channel(config['logChannel']).send('I\'m ready!')
 
 @client.command()

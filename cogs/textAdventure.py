@@ -18,7 +18,7 @@ class TextAdventure(commands.Cog):
     # Events
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Text Adventure cog online')
+        print("server · I have assembled the 'TextAdventure' cog...")
 
     # Commands
     @commands.command()

@@ -9,8 +9,8 @@ class Ready(commands.Cog):
     # Events
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Ready cog online')
-        
+        print("server · I have assembled the 'ready' cog...")
+
 
     # Commands
     @commands.command()
