@@ -54,6 +54,7 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def play(self, ctx):
+        print(f"{ctx.author.name} | Has decided to enter the dungeon...")
         embed = discord.Embed(colour=discord.Colour(0xdbc036), description=self.loadDescription)
         embed.set_author(name="Start game")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
@@ -132,7 +133,7 @@ class TextAdventure(commands.Cog):
 
         how_many_fingers = range(random.randint(1,3))
         for number in how_many_fingers:
-            finger = random.choice(next_move)
+            finger = random.choice(list(next_move))
             next_move.pop(finger, None)
             await messageObject.add_reaction(finger)
 
