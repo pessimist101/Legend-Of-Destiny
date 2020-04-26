@@ -99,6 +99,7 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
+        extra_text = ""
         print(f'Rooms visited = {rooms_visited}')
         if rooms_visited == []:
             print("Generating room list")
