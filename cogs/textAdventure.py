@@ -11,6 +11,7 @@ class TextAdventure(commands.Cog):
         self.client = client
         self.statsConfig = json.load(open('stats.json', 'r'))
         self.config = json.load(open('config.json', 'r'))
+        self.room_names = json.load(open('rooms/rooms.json', 'r'))
         self.loadDescription = open('LoadDescription.txt').read()
         self.titleArt = open('Title.txt').read()
 
@@ -136,12 +137,14 @@ class TextAdventure(commands.Cog):
                 current_room = random.choice(room_list)
             else:
                 current_room = random.choice(room_list)
-        print(f'{ctx.author.name} · Current room: {current_room}')
+
+        current_room_name = self.room_names[str(current_room)]
+        print(f'{ctx.author.name} · Current room: {current_room} ({current_room_name})')
         # DEBUG: print(f'{ctx.author.name} · Rooms list = {room_list}')
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
-        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=f"{room_description}{extra_text}", title=f"Room {current_room}")
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=f"{room_description}{extra_text}", title=f"Room {current_room_name}")
         embed.set_author(name="Text Adventure!")
         messageObject = await ctx.send(embed=embed)
 
