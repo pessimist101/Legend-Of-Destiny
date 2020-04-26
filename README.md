@@ -1,6 +1,7 @@
 # Legend-Of-Destiny
 StudentHack2020 text adventure Discord bot
-A text adventure discordbot written by Sauce Code for StudentHack2020
+
+written by Sauce Code for StudentHack2020
 
 ##Functionality
 
