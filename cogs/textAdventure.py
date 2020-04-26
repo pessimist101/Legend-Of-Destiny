@@ -88,7 +88,7 @@ class TextAdventure(commands.Cog):
             # Pause/wait for the user to react with an emoji that meets the above condition.
             try:
                 reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-            except futures.TimeoutError:
+            except asyncio.TimeoutError:
                 await ctx.send(f"You've taken too long to choose your stats. Game end. (Waited 30 seconds)")
 
             # Okay, the user has reacted with an emoji, let us find out which one!
@@ -104,13 +104,13 @@ class TextAdventure(commands.Cog):
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
         extra_text = ""
-        print(f'Rooms visited = {rooms_visited}')
+        print(f'{ctx.author.name} | Rooms visited = {rooms_visited}')
         if rooms_visited == []:
-            print("Generating room list")
+            print(f"{ctx.author.name} | Generating room list")
             room_list = list(range(1,21))
             current_room = random.choice(room_list)
         elif len(rooms_visited) > 0:
-            print("Using old rooms list")
+            print(f"{ctx.author.name} | Using old rooms list")
             room_list = rooms_visited
             if len(room_list) < 13:
                 current_room = 'boss'
@@ -119,8 +119,8 @@ class TextAdventure(commands.Cog):
                 current_room = random.choice(room_list)
             else:
                 current_room = random.choice(room_list)
-        print(f'Current room = {current_room}')
-        print(f'Rooms list = {room_list}')
+        print(f'{ctx.author.name} | Current room = {current_room}')
+        print(f'{ctx.author.name} | Rooms list = {room_list}')
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
@@ -143,7 +143,7 @@ class TextAdventure(commands.Cog):
 
         try:
             reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
-        except futures.TimeoutError:
+        except asyncio.TimeoutError:
             await ctx.send(f"You have decided to stay where you are, to not move again out of terror for what lies within. Game end. (Waited 30 seconds)")
 
         if reaction.emoji in next_move:
