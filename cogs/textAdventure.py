@@ -10,7 +10,7 @@ class TextAdventure(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.statsConfig = json.load(open('stats.json', 'r'))
-        self.config = json.load(open('config.json', 'r'))
+        self.config = json.load(open('../config.json', 'r'))
         self.room_names = json.load(open('rooms/rooms.json', 'r'))
         self.loadDescription = open('LoadDescription.txt').read()
         self.titleArt = open('Title.txt').read()
