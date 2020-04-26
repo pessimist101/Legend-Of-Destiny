@@ -108,15 +108,13 @@ class TextAdventure(commands.Cog):
         elif len(rooms_visited) > 0:
             print("Using old rooms list")
             room_list = rooms_visited
-            if len(room_list) < 10:
+            if len(room_list) < 13:
                 current_room = 'boss'
-            elif len(room_list) == 13:
+            elif len(room_list) == 14:
                 extra_text = "\n\n*You feel a rapid and unexpected wave of dread engulf your body. You lose your footing slightly; You grip your head. It hurts. You reckon you're almost there."
                 current_room = random.choice(room_list)
             else:
                 current_room = random.choice(room_list)
-        else:
-            raise ValueError(f"Exceptional state, room encounter has invalid 'rooms visited': {rooms_visited}")
         print(f'Current room = {current_room}')
         print(f'Rooms list = {room_list}')
 
