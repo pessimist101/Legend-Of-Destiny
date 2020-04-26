@@ -106,8 +106,8 @@ class TextAdventure(commands.Cog):
             room_list = rooms_visited
         current_room = random.choice(room_list)
 
-        room_description = open(f'rooms/room{}.txt').read()
-        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description)
+        room_description = open(f'rooms/room{current_room}.txt').read()
+        embed = discord.Embed(colour=discord.Colour(0xdbc036), description=room_description, title="Room {current_room}")
         embed.set_author(name="Room!")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
         messageObject = await ctx.send(embed=embed)
