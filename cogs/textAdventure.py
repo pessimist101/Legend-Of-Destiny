@@ -123,7 +123,7 @@ class TextAdventure(commands.Cog):
             else:
                 current_room = random.choice(room_list)
 
-        current_room_name = self.room_names[current_room]
+        current_room_name = self.room_names[str(current_room)]
         print(f'{ctx.author.name} · Current room: {current_room} ({current_room_name})')
         # DEBUG: print(f'{ctx.author.name} · Rooms list = {room_list}')
 
