@@ -23,19 +23,18 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def mystats(self, ctx):
-        print(ctx.author.id)
+        print(f"{ctx.author.name} · Journal checking...")
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
         cursor.execute("""select * from playerstats where discordID = {};""".format(ctx.author.id))
         results = cursor.fetchall()
         for player in results:
-            print(f'checking {player[1]}')
             if player[1] == str(ctx.author.id):
-                print(" > found in database")
+                print(f"{ctx.author.name} · Found in journal... Getting their lowly stats...")
                 stats = player[2:]
                 break
             else:
-                print(" > not in database")
+                print(f"{ctx.author.name} · Could not find within the journal... What the...?")
                 await ctx.send("Sorry fam, I couldn't find you in the archives :(")
                 continue
         embed = discord.Embed(colour=discord.Colour(0xdbc036))
@@ -54,7 +53,7 @@ class TextAdventure(commands.Cog):
     # Commands
     @commands.command()
     async def play(self, ctx):
-        print(f"{ctx.author.name} | Has decided to enter the dungeon...")
+        print(f"{ctx.author.name} · Has decided to enter the dungeon... How foolish...")
         embed = discord.Embed(colour=discord.Colour(0xdbc036), description=self.loadDescription)
         embed.set_author(name="Start game")
         embed.set_image(url='https://media.discordapp.net/attachments/703581212211544144/703655477174599741/unknown.png?width=1442&height=481')
@@ -90,6 +89,7 @@ class TextAdventure(commands.Cog):
                 reaction, user = await self.client.wait_for('reaction_add', timeout=30.0, check=reaction_info_check)
             except asyncio.TimeoutError:
                 await ctx.send(f"You've taken too long to choose your stats. Game end. (Waited 30 seconds)")
+                return
             else:
                 # Okay, the user has reacted with an emoji, let us find out which one!
                 if reaction.emoji in number_dict:
@@ -104,13 +104,13 @@ class TextAdventure(commands.Cog):
     @commands.command()
     async def room_encounter(self, ctx, rooms_visited=[]):
         extra_text = ""
-        # DEBUG: print(f'{ctx.author.name} | Rooms visited = {rooms_visited}')
+        # DEBUG: print(f'{ctx.author.name} · Rooms visited = {rooms_visited}')
         if rooms_visited == []:
-            print(f"{ctx.author.name} | Picking first room...")
+            print(f"{ctx.author.name} · Picking first room... Poor underling...")
             room_list = list(range(1,21))
             current_room = random.choice(room_list)
         elif len(rooms_visited) > 0:
-            print(f"{ctx.author.name} | Picking next room...")
+            print(f"{ctx.author.name} · Picking next room... They are progressing...")
             room_list = rooms_visited
             if len(room_list) < 13:
                 current_room = 'boss'
@@ -119,8 +119,8 @@ class TextAdventure(commands.Cog):
                 current_room = random.choice(room_list)
             else:
                 current_room = random.choice(room_list)
-        print(f'{ctx.author.name} | Current room = {current_room}')
-        # DEBUG: print(f'{ctx.author.name} | Rooms list = {room_list}')
+        print(f'{ctx.author.name} · Current room: {current_room}')
+        # DEBUG: print(f'{ctx.author.name} · Rooms list = {room_list}')
 
 
         room_description = open(f'rooms/room{current_room}.txt').read()
